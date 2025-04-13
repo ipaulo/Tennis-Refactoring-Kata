@@ -9,6 +9,7 @@ version = "0"
 # most requts are deliberately unpinned so we stay up to date with deps,
 # and CI will warn when things change.
 dependencies = [
+    "coverage>=7.8.0",
     "pytest",
 ]
 
