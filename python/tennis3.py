@@ -11,31 +11,38 @@ class TennisGame3:
         else:
             self.player2_score += 1
 
+    def no_winner_yet(self) -> bool:
+        if self.player1_score < 4 and self.player2_score < 4:
+            return True
+
+    def is_basic_scoring(self) -> bool:
+        if self.player1_score + self.player2_score == 6:
+            return False
+        return True
+
     def score(self):
-        if (self.player1_score < 4 and self.player2_score < 4) and (
-            self.player1_score + self.player2_score < 6
-        ):
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            s = p[self.player1_score]
+        if self.no_winner_yet() and self.is_basic_scoring():
+            score_list = ["Love", "Fifteen", "Thirty", "Forty"]
+            score_name = score_list[self.player1_score]
             return (
-                s + "-All"
+                score_name + "-All"
                 if (self.player1_score == self.player2_score)
-                else s + "-" + p[self.player2_score]
+                else score_name + "-" + score_list[self.player2_score]
             )
         else:
             if self.player1_score == self.player2_score:
                 return "Deuce"
-            s = (
+            leader_name = (
                 self.player1_name
                 if self.player1_score > self.player2_score
                 else self.player2_name
             )
             return (
-                "Advantage " + s
+                "Advantage " + leader_name
                 if (
                     (self.player1_score - self.player2_score)
                     * (self.player1_score - self.player2_score)
                     == 1
                 )
-                else "Win for " + s
+                else "Win for " + leader_name
             )
