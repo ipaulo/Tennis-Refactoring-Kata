@@ -22,6 +22,16 @@ class TennisGame3:
             return True
         return False
 
+    def is_advantage(self) -> bool:
+        if (self.player1_score - self.player2_score) * (
+            self.player1_score - self.player2_score
+        ) == 1:
+            return True
+        return False
+
+    # def is_leader(self):
+        
+
     def simple_score(self) -> str:
         score_list: list[str] = ["Love", "Fifteen", "Thirty", "Forty"]
         score_name = score_list[self.player1_score]
@@ -45,10 +55,6 @@ class TennisGame3:
             )
             return (
                 "Advantage " + leader_name
-                if (
-                    (self.player1_score - self.player2_score)
-                    * (self.player1_score - self.player2_score)
-                    == 1
-                )
+                if self.is_advantage()
                 else "Win for " + leader_name
             )
