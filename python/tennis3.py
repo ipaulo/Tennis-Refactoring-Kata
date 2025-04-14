@@ -14,6 +14,7 @@ class TennisGame3:
     def no_winner(self) -> bool:
         if self.player1_score < 4 and self.player2_score < 4:
             return True
+        return False
 
     def is_simple_score(self) -> bool:
         """Check score is less than tied at Forty-Forty"""
