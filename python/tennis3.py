@@ -17,7 +17,6 @@ class TennisGame3:
         return False
 
     def is_simple_score(self) -> bool:
-        """Check score is less than tied at Forty-Forty"""
         if self.player1_score + self.player2_score < 6:
             return True
         return False
@@ -29,8 +28,12 @@ class TennisGame3:
             return True
         return False
 
-    # def is_leader(self):
-        
+    def current_leader(self):
+        return (
+            self.player1_name
+            if self.player1_score > self.player2_score
+            else self.player2_name
+        )
 
     def simple_score(self) -> str:
         score_list: list[str] = ["Love", "Fifteen", "Thirty", "Forty"]
@@ -42,17 +45,13 @@ class TennisGame3:
         )
 
     def score(self):
+        """Check score is less than tied at Forty-Forty"""
         if self.no_winner() and self.is_simple_score():
             return self.simple_score()
-        # It is either deuce or advantage somebody
         elif self.player1_score == self.player2_score:
             return "Deuce"
         else:
-            leader_name: str = (
-                self.player1_name
-                if self.player1_score > self.player2_score
-                else self.player2_name
-            )
+            leader_name: str = self.current_leader()
             return (
                 "Advantage " + leader_name
                 if self.is_advantage()
