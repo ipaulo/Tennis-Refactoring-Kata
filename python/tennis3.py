@@ -16,6 +16,7 @@ class TennisGame3:
             return True
 
     def is_simple_score(self) -> bool:
+        '''Check tied at Forty-Forty'''
         if self.player1_score + self.player2_score == 6:
             return False
         return True
@@ -32,9 +33,9 @@ class TennisGame3:
     def score(self):
         if self.no_winner() and self.is_simple_score():
             return self.simple_score()
+        elif self.player1_score == self.player2_score:
+            return "Deuce"
         else:
-            if self.player1_score == self.player2_score:
-                return "Deuce"
             leader_name = (
                 self.player1_name
                 if self.player1_score > self.player2_score
