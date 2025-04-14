@@ -16,10 +16,10 @@ class TennisGame3:
             return True
 
     def is_simple_score(self) -> bool:
-        '''Check tied at Forty-Forty'''
-        if self.player1_score + self.player2_score == 6:
-            return False
-        return True
+        """Check tied at Forty-Forty"""
+        if self.player1_score + self.player2_score < 6:
+            return True
+        return False
 
     def simple_score(self) -> str:
         score_list = ["Love", "Fifteen", "Thirty", "Forty"]
